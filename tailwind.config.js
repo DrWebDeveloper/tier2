@@ -12,9 +12,14 @@ export default {
 
     theme: {
         extend: {
+            // fontFamily: "Galada",
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ["DM Serif Text"],
             },
+
+            // fontFamily: {
+            //     sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            // },
         },
     },
 

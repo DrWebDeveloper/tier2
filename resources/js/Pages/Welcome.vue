@@ -1,16 +1,17 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import Nabvar from '@/Components/Custom/Navbar.vue';
 </script>
 
 <template>
+
     <Head title="Welcome" />
+    <Nabvar />
 
 </template>
 <style scoped>
-*{
-    font-family: 'Inter', sans-serif !important;
-}
 body {
+    font-family: "Galada", cursive;
     background-color: #FFFFFF;
     color: #000000;
 }
