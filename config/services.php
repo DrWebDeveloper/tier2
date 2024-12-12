@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'airtable' => [
+        'token' => env('AIRTABLE_PERSONAL_ACCESS_TOKEN'),
+        'base_id' => env('AIRTABLE_BASE_ID'),
+        'table_name' => env('AIRTABLE_TABLE_NAME'),
+    ],
+
 ];
