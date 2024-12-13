@@ -12,6 +12,10 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                customBrown: '#c87e37',
+                customLightCream: '#faf5ea',
+              },
             // fontFamily: "Galada",
             fontFamily: {
                 sans: ["DM Serif Text"],

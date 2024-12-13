@@ -27,8 +27,8 @@ function toggleIndustry(industryRid) {
 <template>
   <section class="hero-section">
     <div class="container">
-      <div class="bg-orange-100 text-xs py-1 rounded-md mb-1 text-center max-w-xs mx-auto">
-        <span>Warning: This is a demo site</span>
+      <div class="bg-customLightCream text-xs py-1 rounded-full mb-1 text-center max-w-xs mx-auto text-customBrown font-semibold">
+        <span>Warning: This is a demo site 🔥</span>
       </div>
       <h1>Esports Organization Database</h1>
       <p>The only comprehensive, ever growing, esports organization directory tool</p>
@@ -50,7 +50,7 @@ function toggleIndustry(industryRid) {
           v-for="industry in industries"
           :key="industry.rid"
           :class="{
-            'bg-gray-700 text-white': selectedIndustries.includes(industry.rid),
+            'bg-customBrown text-white': selectedIndustries.includes(industry.rid),
             'bg-gray-200 text-black': !selectedIndustries.includes(industry.rid)
           }"
           @click="toggleIndustry(industry.rid)"

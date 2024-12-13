@@ -201,8 +201,8 @@ body {
 .categories-filter button {
     /* background-color: #f5f5f5; */
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
     font-size: 0.875rem;
     font-weight: 500;
     color: #333;

@@ -1,4 +1,6 @@
 <script setup>
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+
 </script>
 <template>
         <nav class="navbar navbar-expand-lg navbar-light border-bottom bg-white">
@@ -11,20 +13,20 @@
             </button>
             <div class="navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 align-items-center mb-2 ms-auto">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link me-3" href="#">Blog</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link me-3" href="#">Subscribe</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-3" href="#">Contact Us</a>
                     </li>
-                    <li class="nav-item me-3">
+                    <!-- <li class="nav-item me-3">
                         <a class="nav-link" href="#">Login</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
-                        <a class="btn-add-listing" href="#">Add Listing</a>
+                        <PrimaryButton class="bg-customBrown">Sign Up</PrimaryButton>
                     </li>
                 </ul>
             </div>
