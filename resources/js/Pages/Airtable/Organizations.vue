@@ -13,11 +13,16 @@ const props = defineProps({
     organizations: {
         type: Array,
         required: true
+    },
+    sponsorships: {
+        type: Array,
+        required: true
     }
 });
 
 const industries = props.industries;
 const organizations = props.organizations;
+const sponsorships = props.sponsorships;
 
 const searchQuery = ref('');
 // This will store selected industry rids (not ids)
@@ -104,10 +109,20 @@ function handleIndustryToggled(industryRid) {
                     <div class="tool-card border-2">
                         <h5 class="border-b-2">{{ organization.name }}</h5>
                         <p>Sponsors:</p>
-                        <img :src="JSON.parse(organization.logo)[0]?.url"
+                         {{ sponsorships.filter(sponsorship => organization.sponsorships.includes(sponsorship.rid)).map(sponsorship => sponsorship.name).join(', ') }}
+
+                         <!-- {{ sponsorships.filter(sponsorship => organization.sponsorships.includes(sponsorship.rid))[0]?.logo }} -->
+                         
+                         <span v-for="sponsorship in sponsorships.filter(sponsorship => organization.sponsorships.includes(sponsorship.rid))" :key="logo">
+                            <!-- {{ JSON.parse(sponsorship.logo)[0]?.url }} -->
+                            <img :src="JSON.parse(sponsorship.logo)[0]?.url" :alt="organization.name" class="w-4 h-4 object-cover" />
+                         </span>
+
+                        <!-- <img :src="JSON.parse(sponsorships.filter(sponsorship => organization.sponsorships.includes(sponsorship.rid))[0].logo)[0].url"
                              :alt="organization.name"
-                             style="width: 100%; height: 100px;">
-                        <p></p>
+                             style="width: 100%; height: 100px;"> -->
+                        <p>
+                        </p>
                         <a class="w-full justify-center inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900"
                            :href="organization.website"
                            target="_blank">

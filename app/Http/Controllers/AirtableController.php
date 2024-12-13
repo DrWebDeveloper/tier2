@@ -86,6 +86,7 @@ class AirtableController extends Controller
         return inertia('Airtable/Organizations', [
             'organizations' => $organizations,
             'industries' => $industries,
+            'sponsorships' => $sponsorships,
         ]);
     }
     
