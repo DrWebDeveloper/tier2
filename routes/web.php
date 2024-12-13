@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [AirtableController::class,'index'])->name('home');
+Route::get('/sponsors', [AirtableController::class,'sponsors'])->name('sponsorships');
 Route::get('/esports', [AirtableController::class,'esportsOrgs'])->name('orgs');
 Route::view('/sample','airtable.sample');
 // Route::get('/', function () {

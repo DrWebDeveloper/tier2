@@ -79,9 +79,29 @@ class AirtableController extends Controller
             return Sponsorship::get();
         });
 
-        return inertia('Airtable/Index', [
+        $organizations = Cache::remember('all_organization', 15 * 60, function () use($airtable) {
+            return Organization::get();
+        });
+
+        return inertia('Airtable/Organizations', [
+            'organizations' => $organizations,
             'industries' => $industries,
+        ]);
+    }
+    
+    public function sponsors(AirTableService $airtable)
+    {
+        $industries = Cache::remember('industries_with_sponsorship_count', 15 * 60, function () {
+            return Industry::withCount('sponsorships')->get();
+        });
+
+        $sponsorships = Cache::remember('all_sponsorships', 15 * 60, function () {
+            return Sponsorship::get();
+        });
+
+        return inertia('Airtable/Sponsorships', [
             'sponsorships' => $sponsorships,
+            'industries' => $industries,
         ]);
     }
 

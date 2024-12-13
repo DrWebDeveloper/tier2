@@ -10,14 +10,14 @@ const props = defineProps({
         type: Array,
         required: true
     },
-    sponsorships: {
+    organizations: {
         type: Array,
         required: true
     }
 });
 
 const industries = props.industries;
-const sponsorships = props.sponsorships;
+const organizations = props.organizations;
 
 const searchQuery = ref('');
 // This will store selected industry rids (not ids)
@@ -26,15 +26,15 @@ const selectedIndustries = ref([]);
 // Filter by search query first
 const filteredBySearch = computed(() => {
     const query = searchQuery.value.toLowerCase();
-    if (!query) return sponsorships;
+    if (!query) return organizations;
 
-    return sponsorships.filter(sponsorship =>
-        sponsorship.name.toLowerCase().includes(query)
+    return organizations.filter(organization =>
+        organization.name.toLowerCase().includes(query)
     );
 });
 
 // Filter by selected industries
-const filteredSponsorships = computed(() => {
+const filteredorganizations = computed(() => {
     const filtered = filteredBySearch.value;
 
     // If no industries selected, return all from the search result
@@ -42,18 +42,18 @@ const filteredSponsorships = computed(() => {
         return filtered;
     }
 
-    // Return sponsorships whose industry_rid is in selectedIndustries
-    return filtered.filter(sponsorship => {
-        return selectedIndustries.value.includes(sponsorship.industry_rid);
+    // Return organizations whose industry_rid is in selectedIndustries
+    return filtered.filter(organization => {
+        return selectedIndustries.value.includes(organization.industry_rid);
     });
 });
 
 // Compute dynamic counts based on the search results for each industry
 const industriesWithCounts = computed(() => {
     return industries.map(industry => {
-        // Count how many sponsorships in filteredBySearch belong to this industry.rid
-        const filteredCount = filteredBySearch.value.filter(sponsorship => {
-            return sponsorship.industry_rid === industry.rid;
+        // Count how many organizations in filteredBySearch belong to this industry.rid
+        const filteredCount = filteredBySearch.value.filter(organization => {
+            return organization.industry_rid === industry.rid;
         }).length;
 
         return {
@@ -89,25 +89,27 @@ function handleIndustryToggled(industryRid) {
       @industry-toggled="handleIndustryToggled"
     />
 
+    <!-- {{ organizations }} -->
+
     <section class="results-section">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-1">
-                <div class="results-count">{{ filteredSponsorships.length }} Results</div>
+                <div class="results-count">{{ filteredorganizations.length }} Results</div>
             </div>
 
             <div class="row g-3">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3"
-                     v-for="sponsorship in filteredSponsorships"
-                     :key="sponsorship.id">
+                     v-for="organization in filteredorganizations"
+                     :key="organization.id">
                     <div class="tool-card border-2">
-                        <h5 class="border-b-2">{{ sponsorship.name }}</h5>
+                        <h5 class="border-b-2">{{ organization.name }}</h5>
                         <p>Sponsors:</p>
-                        <img :src="JSON.parse(sponsorship.logo)[0]?.url"
-                             :alt="sponsorship.name"
+                        <img :src="JSON.parse(organization.logo)[0]?.url"
+                             :alt="organization.name"
                              style="width: 100%; height: 100px;">
                         <p></p>
                         <a class="w-full justify-center inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900"
-                           :href="sponsorship.website"
+                           :href="organization.website"
                            target="_blank">
                             Visit Store
                         </a>
