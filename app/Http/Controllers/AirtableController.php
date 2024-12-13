@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Cache;
 use App\Models\Industry;
+use App\Models\Organization;
 use App\Models\Sponsorship;
 use App\Services\AirTableService;
+use Carbon\Carbon;
 
 class AirtableController extends Controller
 {
@@ -86,11 +88,30 @@ class AirtableController extends Controller
     public function esportsOrgs(AirTableService $airtable)
     {
 
-        $sponsorships = Cache::remember('all_sponsorships', 15 * 60, function () use($airtable) {
+        $organization = Cache::remember('all_organization', 15 * 60, function () use($airtable) {
             return $airtable->getEsportsOrgs();
         });
+        // dd($organization);
 
-        dd($sponsorships);
+        // store the data in the database
+        foreach ($organization as $org) {
+            Organization::firstOrCreate([
+                'rid' => $org['id'],
+                'name' => $org['fields']['Name']??'',
+                'sponsorships' => json_encode(collect($org['fields']['Sponsorships']??null)),
+                'sponsorship_logos' => json_encode(collect($org['fields']['Sponsorship Logo']??null)),
+                'sponsorship_names' => json_encode(collect($org['fields']['Sponsor Name']??null)),
+                'sponsorship_websites' => json_encode(collect($org['fields']['Sponsor Website']??null)),
+                'logo' => json_encode(collect($org['fields']['Logo']??null)),
+                'country' => $org['fields']['Country']??null,
+                'website' => $org['fields']['Website']??null,
+                'created_at' => Carbon::parse($org['createdTime'])->toDateTimeString(),
+            ]);
+        }
+
+        dd(Organization::get());
+
+        
     }
 
     public function showRecords(AirTableService $airtable)
