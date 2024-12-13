@@ -83,6 +83,16 @@ class AirtableController extends Controller
         ]);
     }
 
+    public function esportsOrgs(AirTableService $airtable)
+    {
+
+        $sponsorships = Cache::remember('all_sponsorships', 15 * 60, function () use($airtable) {
+            return $airtable->getEsportsOrgs();
+        });
+
+        dd($sponsorships);
+    }
+
     public function showRecords(AirTableService $airtable)
     {
         $records = $airtable->getRecords([

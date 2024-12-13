@@ -172,6 +172,18 @@ class AirTableService
         return $this->getRecordsFromTable('Industries', $params);
     }
 
+        /**
+     * Get records from the table with ID "tblsrns11YWqP2zov".
+     *
+     * @param array $params
+     * @return array
+     */
+    public function getEsportsOrgs(array $params = []): array
+    {
+        return $this->getRecordsFromTable('tblsrns11YWqP2zov', $params);
+    }
+
+
     /**
      * Get records from the "Sponsorships" table.
      *

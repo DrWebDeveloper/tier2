@@ -9,7 +9,7 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <div class="navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 align-items-center mb-2 ms-auto">
                     <li class="nav-item">
                         <a class="nav-link me-3" href="#">Blog</a>
